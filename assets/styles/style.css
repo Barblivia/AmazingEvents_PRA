@@ -1,0 +1,49 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+}
+
+.allpage{
+    margin: 20px;
+  }
+
+header{
+    background-color: goldenrod;
+    min-height: 10vh;
+    height:50px;
+    display: flex;
+    align-items:center;
+    padding:1rem;
+    gap:1rem;
+}
+.navButtons {
+    display:flex;
+    gap:10px;
+    margin-left: 600px;
+   }
+.logo{
+    width: 30vh;
+    align-self:initial;
+        }
+    
+main{
+    min-height: 85vh;
+}
+footer{
+    flex:none;
+    background-color: goldenrod;
+    padding: 2px;
+    min-height: 5vh;
+}
+
+/*Clase contenedor {
+    height:500px;
+    width:500px;
+    display: flex;
+}
+    clase contenida {
+    height:100px;
+    width:100px;}
+
+
