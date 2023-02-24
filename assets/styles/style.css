@@ -2,14 +2,13 @@
     margin: 0;
     padding: 0;
     box-sizing:border-box;
+    font-family: "Calibri";
 }
-
-.allpage{
-    margin: 20px;
-  }
-
+body{
+    min-height: 100vh;
+}
 header{
-    background-color: goldenrod;
+    background-color: rgb(83, 70, 81);
     min-height: 10vh;
     height:50px;
     display: flex;
@@ -17,22 +16,83 @@ header{
     padding:1rem;
     gap:1rem;
 }
-.navButtons {
-    display:flex;
-    gap:10px;
-    margin-left: 600px;
-   }
+
 .logo{
     width: 30vh;
     align-self:initial;
         }
-    
+.navBar{
+    display:flex;
+    gap:10px;
+    margin-left: 600px;
+    display: inline-block;
+     }
+nav a{
+    width: 7rem;
+    height: 3rem;
+    background-color:rgb(241, 95, 144);
+    color:whitesmoke;
+    text-decoration: none;
+    font-weight: bolder;
+    text-align: center;
+    padding:8px;
+    gap:5px;
+}   
+.carousel-inner img {
+    object-fit: cover;
+    height: 30vh;
+    width: 100%;
+  }
+  .carousel-inner h5 {
+    color:whitesmoke;
+    font-size: 2.5em;
+    font-weight: bolder;
+    background-color:rgba(241, 95, 144,0.7);
+    display:inline;
+    padding:0.5%;
+  }
 main{
+    background-color:wheat;
     min-height: 85vh;
 }
+.cardsContainer{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    justify-content: center;
+    margin: 2%;
+}
+.card {
+    width: 500px;
+    height: 350px;
+    display: flex;
+    background-color: rgb(241, 95, 144);
+    border-radius: 1rem;
+}
+.card-img-top{
+    height: 40%;
+    object-fit: cover;
+}
+.card-title, .card-price{
+    text-align: center;
+    font-weight: bolder;
+}
+.btn-primary {
+    background-color: rgb(83, 70, 81);
+    }
+    .btn-primary:hover {
+        background-color:slateblue;
+        }
+
+/*<img class="card-img-top" src="./assets/images/cinema.jpg" alt="Cinema">
+                    <div class="card-body">
+                        <h5 class="card-title">Cinema</h5>
+                        <p class="card-text">Descriptive text. Descriptive text. Descriptive text</p>
+                        <p class="card-price">Price $$$</p>
+                        <a href="#" class="btn btn-primary">Details</a>*/
 footer{
     flex:none;
-    background-color: goldenrod;
+    background-color: rgb(83, 70, 81);
     padding: 2px;
     min-height: 5vh;
 }
