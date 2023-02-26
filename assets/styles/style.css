@@ -16,18 +16,17 @@ header{
     padding:1rem;
     gap:1rem;
 }
-
 .logo{
     width: 30vh;
     align-self:initial;
         }
-.navBar{
+.navbar-nav{
     display:flex;
     gap:10px;
     margin-left: 600px;
     display: inline-block;
      }
-nav a{
+     .nav-link{
     width: 7rem;
     height: 3rem;
     background-color:rgb(241, 95, 144);
@@ -51,17 +50,24 @@ nav a{
     display:inline;
     padding:0.5%;
   }
-main{
+  main{
     background-color:wheat;
     min-height: 85vh;
+}
+h2{
+    text-align: center;
+    font-size: 3rem;
+    color:whitesmoke;
+    margin-bottom: 1.5rem;
+    background-color:  rgb(121, 105, 118);
 }
 .cardsContainer{
     display: flex;
     flex-wrap: wrap;
     gap: 3rem;
     justify-content: center;
-    margin: 2%;
-}
+    padding:1%;
+    }
 .card {
     width: 500px;
     height: 350px;
@@ -79,10 +85,59 @@ main{
 }
 .btn-primary {
     background-color: rgb(83, 70, 81);
-    }
-    .btn-primary:hover {
-        background-color:slateblue;
-        }
+}
+.btn-primary:hover {
+    background-color: rgb(138, 72, 128);
+}
+.containerForm {
+    display: flex;
+    align-self: center;
+    padding:20px;
+    align-content: center;
+    width: 50%;
+    border-radius:5px;
+    background-color:rgb(245, 140, 175);
+    margin:0 auto;
+    margin: 1% 20% 0px;
+    gap: 0.5rem;
+/*box-sizing : border-box;
+padding:20px;
+flex-direction: column;
+height: 30vh;
+width: 50%;
+max-width: 440px;
+margin:0 auto;*/
+}
+input[type=text], textarea, input[type=email] {
+width: 50%;
+padding: 12px;
+border: 1px solid rgb(83, 70, 81);
+border-radius: 4px;
+box-sizing: border-box;
+margin-top: 6px;
+margin-bottom: 16px;
+margin-right: 0px;
+margin-left: 0px;
+resize: vertical;
+}
+label{
+margin-right: 0px;
+margin-left: 0px;
+width: 100%;
+font-weight: bolder;
+}
+input[type=submit] {
+background-color: rgb(83, 70, 81);
+color: white;
+padding: 12px 20px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+}
+      
+input[type=submit]:hover {
+background-color:  rgb(138, 72, 128);
+}
 
 /*<img class="card-img-top" src="./assets/images/cinema.jpg" alt="Cinema">
                     <div class="card-body">
@@ -91,11 +146,19 @@ main{
                         <p class="card-price">Price $$$</p>
                         <a href="#" class="btn btn-primary">Details</a>*/
 footer{
-    flex:none;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: rgb(83, 70, 81);
-    padding: 2px;
+    padding: 0.5%;
     min-height: 5vh;
 }
+footer p{
+    color:antiquewhite;
+    font-weight: bolder;
+    font-size: 1rem;
+    align-self: flex-end;
+    }
 
 /*Clase contenedor {
     height:500px;
