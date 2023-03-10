@@ -1,4 +1,5 @@
 import data from "./amazing.js"
+import  {pastEvents} from "./functions.js"
 
 const cardsPast = document.getElementById('cardsPast');
 function pastEvents(events, date) {

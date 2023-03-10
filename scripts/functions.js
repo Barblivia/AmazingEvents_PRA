@@ -1,5 +1,47 @@
+import data from "./amazing.js"
 
+//function que trae data de eventos 
+function allEvents(data) {
+    let arrayEventsAux = [];
+    arrayEventsAux = data.events.filter(event => Date.parse(event.date) < Date.parse(data.currentDate));
+    return arrayPastAux;
+};
 
+//function que filtra data de eventos pasados
+function pastEvents(data) {
+    let arrayPastAux = [];
+    arrayPastAux = data.events.filter(event => Date.parse(event.date) < Date.parse(data.currentDate));
+    return arrayPastAux;
+};
+
+//function que filtra data de eventos futuros
+function upcomingEvents(data) {
+    let arrayUpcomAux = [];
+    arrayUpcomAux = data.events.filter(event => Date.parse(event.date) > Date.parse(data.currentDate));
+    return arrayUpcomAux;
+};
+
+const cardsHome = document.getElementById('cardsHome');
+
+function allEvents(events) {
+    let fragmento = document.createDocumentFragment();
+    for (let event of events) {
+        let div = document.createElement('div');
+        div.className = 'card';
+        div.style = 'width: 18rem';
+        div.innerHTML = `
+            <img class="card-img-top" src="${event.image}">
+            <div class="card-body">
+                <h5 class="card-title">${event.name}</h5>
+                <p class="card-text">${event.description}</p>
+                <p class="card-price">Price: $${event.price}</p>
+                <a href="/pages/details.html" class="btn btn-primary">Details</a>
+            </div>`;
+        fragmento.appendChild(div);
+        cardsHome.appendChild(fragmento);
+    }
+}
+let cards = allEvents(data.events);
 
 /*
 export function tarjetasPasadas() {
@@ -53,26 +95,4 @@ let mmasFrutas = frutasNuevas.reduce((accu,fruta)=>{
 //SORT
 personas.sort
 
-
-
-const cardsHome = document.getElementById('cardsHome');
-let fragmento = document.createDocumentFragment();
-function allEvents(events) {
-    for (let event of events) {
-        let div = document.createElement('div');
-        div.className = 'card';
-        div.style = 'width: 18rem';
-        div.innerHTML = `
-            <img class="card-img-top" src="${event.image}">
-            <div class="card-body">
-                <h5 class="card-title">${event.name}</h5>
-                <p class="card-text">${event.description}</p>
-                <p class="card-price">Price: $${event.price}</p>
-                <a href="/pages/details.html" class="btn btn-primary">Details</a>
-            </div>`;
-        fragmento.appendChild(div);
-    }
-    cardsHome.appendChild(fragmento);
-}
-let cards = allEvents(data.
     */

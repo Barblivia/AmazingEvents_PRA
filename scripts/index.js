@@ -1,4 +1,5 @@
 import data from "./amazing.js"
+
 /*import function*/
 
 const cardsHome = document.getElementById('cardsHome');

@@ -1,4 +1,6 @@
 import data from "./amazing.js"
+import {upcomingEvents, drawCards} from "./functions.js";
+
 const cardsUpcoming = document.getElementById('cardsUpcoming');
 
 function upcomingEvents(events, date) {
