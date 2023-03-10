@@ -1,3 +1,4 @@
+/*NORMALIZA*/
 * {
   margin: 0;
   padding: 0;
@@ -17,7 +18,6 @@ header {
   display: flex;
   align-items: center;
   padding: 1rem;
-  gap: 1rem;
   justify-content: space-between;
 }
 main {
@@ -48,7 +48,7 @@ main {
   padding: 6px;
   gap: 5px;
   flex-wrap: wrap;
- }
+}
 
 .nav-link:hover {
   color: black;
@@ -86,7 +86,7 @@ h2 {
   color: whitesmoke;
   margin-bottom: 1.5rem;
   background-color: rgb(121, 105, 118);
-  width: 100%;;
+  width: 100%;
 }
 
 .cardsContainer {
@@ -105,7 +105,7 @@ h2 {
   border-radius: 1rem;
   margin-bottom: 1rem;
   margin-top: 1rem;
-  }
+}
 
 .card-img-top {
   height: 45%;
@@ -116,6 +116,11 @@ h2 {
 .card-price {
   text-align: center;
   font-weight: bolder;
+}
+
+.card-text{
+  height: 40%;
+  object-fit: cover;
 }
 
 .btn-primary,
@@ -132,11 +137,13 @@ h2 {
   background-color: rgb(241, 95, 144);
   border-radius: 1rem;
   display: flex;
-  padding: 0.5rem;
+  width: 70%;
+  margin-left: 4rem;
+  padding: 1rem;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 .cardDetails > img {
-  width: 50%;
+  width: 40%;
   height: 100%;
   object-fit: contain;
   align-self: center;
@@ -164,7 +171,7 @@ h2 {
   flex-direction: column;
 }
 
-.navbar-toggler{
+.navbar-toggler {
   margin-bottom: 1rem;
 }
 
@@ -211,7 +218,7 @@ input[type="submit"] {
   border-radius: 4px;
   cursor: pointer;
   width: 25%;
-  align-self:flex-start;
+  align-self: flex-start;
 }
 
 input[type="submit"]:hover {
@@ -221,17 +228,18 @@ input[type="submit"]:hover {
 .titulo_tabla {
   background-color: rgb(83, 70, 81);
   color: white;
-  padding: 0.5rem;
+  padding: 1rem;
 }
-thead{
-    font-weight: bold;
-    border-bottom: 4px dotted black;
-    font-size: 18px;
+thead {
+  font-weight: bold;
+  border-bottom: 4px dotted black;
+  font-size: 18px;
 }
 .table {
   text-align: center;
   background-color: rgb(228, 175, 201);
   table-layout: auto;
+  padding: 2rem;
   border-collapse: separate;
   border-color: rgb(70, 45, 68);
   flex-wrap: wrap;
@@ -242,7 +250,7 @@ footer {
   justify-content: space-between;
   align-items: center;
   background-color: rgb(83, 70, 81);
-  padding: 0.5rem;
+  padding: 1rem;
   min-height: 5vh;
   width: 100%;
   flex-wrap: wrap;
@@ -251,6 +259,7 @@ footer {
 footer p {
   color: antiquewhite;
   font-weight: bolder;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   align-self: flex-end;
+  width: 20%;
 }

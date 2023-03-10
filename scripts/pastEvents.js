@@ -1,8 +1,8 @@
 import data from "./amazing.js"
 
 const cardsPast = document.getElementById('cardsPast');
-let fragmento = document.createDocumentFragment();
 function pastEvents(events, date) {
+    let fragmento = document.createDocumentFragment();
     for (let event of events) {
         if (event.date < date) {
             let div = document.createElement('div');
@@ -17,8 +17,8 @@ function pastEvents(events, date) {
                     <a href="/pages/details.html" class="btn btn-primary">Details</a>
                 </div>`;
             fragmento.appendChild(div);
+            cardsPast.appendChild(fragmento);
         }
     }
-    cardsPast.appendChild(fragmento);
 }
 let cards = pastEvents(data.events, data.currentDate);

@@ -1,8 +1,9 @@
 import data from "./amazing.js"
 const cardsUpcoming = document.getElementById('cardsUpcoming');
-let fragmento = document.createDocumentFragment();
+
 function upcomingEvents(events, date) {
     for (let event of events) {
+        let fragmento = document.createDocumentFragment();
         if (event.date > date) {
             let div = document.createElement('div');
             div.className = 'card';
@@ -16,8 +17,8 @@ function upcomingEvents(events, date) {
                     <a href="/pages/details.html" class="btn btn-primary">Details</a>
                 </div>`;
             fragmento.appendChild(div);
+            cardsUpcoming.appendChild(fragmento);
         }
     }
-    cardsUpcoming.appendChild(fragmento);
 }
 let cards = upcomingEvents(data.events, data.currentDate);
