@@ -1,98 +1,92 @@
 import data from "./amazing.js"
 
-//function que trae data de eventos 
-function allEvents(data) {
-    let arrayEventsAux = [];
-    arrayEventsAux = data.events.filter(event => Date.parse(event.date) < Date.parse(data.currentDate));
-    return arrayPastAux;
-};
-
 //function que filtra data de eventos pasados
-function pastEvents(data) {
+export function pastEvents(data) {
     let arrayPastAux = [];
-    arrayPastAux = data.events.filter(event => Date.parse(event.date) < Date.parse(data.currentDate));
+    arrayPastAux = data.events.filter(event => (Date.parse(event.date) < Date.parse(data.currentDate)));
     return arrayPastAux;
-};
+}
 
 //function que filtra data de eventos futuros
-function upcomingEvents(data) {
+export function upcomingEvents(data) {
     let arrayUpcomAux = [];
-    arrayUpcomAux = data.events.filter(event => Date.parse(event.date) > Date.parse(data.currentDate));
+    arrayUpcomAux = data.events.filter(event => (Date.parse(event.date) > Date.parse(data.currentDate)));
     return arrayUpcomAux;
 };
 
-const cardsHome = document.getElementById('cardsHome');
-
-function allEvents(events) {
+//function que dibuja las cards
+export function drawCards(events, contenedor) {
+    contenedor.innerHTML = ""
     let fragmento = document.createDocumentFragment();
     for (let event of events) {
         let div = document.createElement('div');
         div.className = 'card';
         div.style = 'width: 18rem';
         div.innerHTML = `
-            <img class="card-img-top" src="${event.image}">
-            <div class="card-body">
-                <h5 class="card-title">${event.name}</h5>
-                <p class="card-text">${event.description}</p>
-                <p class="card-price">Price: $${event.price}</p>
-                <a href="/pages/details.html" class="btn btn-primary">Details</a>
-            </div>`;
+                <img class="card-img-top" src="${event.image}">
+                <div class="card-body">
+                    <h5 class="card-title">${event.name}</h5>
+                    <p class="card-text">${event.description}</p>
+                    <p class="card-price">Price: $${event.price}</p>
+                    <a href="../pages/details.html?id=${event.id}" class="btn btn-primary">Details</a>
+                </div>`;
         fragmento.appendChild(div);
-        cardsHome.appendChild(fragmento);
     }
-}
-let cards = allEvents(data.events);
-
-/*
-export function tarjetasPasadas() {
-  return events.filter(event => event.date < currentDate);
+    contenedor.appendChild(fragmento);
 }
 
-let lista = document.getElementById("lista")
-let array =[]
-let unaFuncion = (array) => {
-    lista.innerHTML=""
-    array.forEach(elementoArray) => {
-        let listItem = document.createElement("li")
-        listItem.innerText = elementoArray
-        lista.appenChild(listItem)
+// function que selecciona las categorías
+
+//función que crea las categorías en checkboxes
+export function createChecks(array) {
+    let arrayCateg = array.map(event => event.category)
+    let setCateg = new Set(arrayCateg)
+    let arrChecks = Array.from(setCateg)
+    let checkboxes = ''
+    arrChecks.forEach(category => {
+        checkboxes += `<div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="${category}" value="${category}">
+        <label class="form-check-label" for="${category}">${category}</label>
+      </div>`
     })
-    }    
-    unaFuncion(array) podría dibujar ese contenido de un array o de un array filtrado
-CREA NUEVO ARRAY CON RESULTADO FILTRO USA OPERADORES LÓGICOS EN LA CONDICION
-let arrayFiltrado = array.filter((elementoArray)=> elementoArray=="condicionElemento") buscador.value
-let arrayFiltrado = array.filter((elementoArray)=> elementoArray.includes("condicionElemento")) includes(buscador.value)
-fruta.toLowerCase().includes(buscador.value.toLowerCase()))
+    checkContainer.innerHTML = checkboxes
+}
 
-let personas = [{id:1, name:"Ema"}, {id:2, name:"Ama"}]
-let personasFiltradas = personas.filter(persona)=> persona.id ==1))
+//función que filtra las categorías en checkboxes
+function filtrarPorPais(array){
+    let checkboxes = document.querySelectorAll("input[type='checkbox']")
+    console.log(checkboxes);
+    let arrayChecks = Array.from(checkboxes)
+    let arrayChecksChecked = arrayChecks.filter(check => check.checked)
+    console.log(arrayChecksChecked);
+    let arrayChecksCheckedValues = arrayChecksChecked.map(checkChecked => checkChecked.value)
+    console.log(arrayChecksCheckedValues);
+    let arrayFiltrado = array.filter(elemento => arrayChecksCheckedValues.includes(elemento.country))
+    console.log(arrayFiltrado);
+    if(arrayChecksChecked.length > 0){
+        return arrayFiltrado
+    }
+    return array
+}
 
-
-PONER UN ID AL BOTÓN POR EJ. id="buscador" en HTML
-let buscador = document.getElementById("buscador")
-buscador.addEventListener("change",()) =>{
-    console.log("cambió");
-})
-
-buscador.onChange(() =>{
-    let arrayFiltrado =array.filter ((elementoArrey) => elementoArray == buscador.value);
-})
-
-let nombrePersonas = personasFiltradas.map ((persona)=>persona.name)
-con llaves, usar return 
-personas.some((persona)=>persona.name == "Valor") RETORNA BOOLEANO
-
-let encontrado=personas.find((persona)=> persona.name =="valor")
-
-//reduce
-let numeros =[1,2,3,4]
-let total = numeros.reduce(accumulador, numero)=>acumulador+numero)
-
-let mmasFrutas = frutasNuevas.reduce((accu,fruta)=>{
-    returna accucc +", "+fruta}, frutas.join(","))
-    console.log(masFrutas, split(","));
-
-//SORT
-personas.sort
-
-    */
+//function que dibuja las cards de details
+export function drawDetails(evento, contenedor) {
+    let div = document.createElement('div');
+    div.className = 'cardDetails';
+    div.innerHTML = `
+               <img class="class="img-fluid" src="${evento.image}" alt="${evento.name}">
+                <div class="card-body">
+                    <dl class="card-list">
+                        <dt><h3>${evento.name}</h3></dt><dd></dd>    
+                        <dt>Date:</dt><dd>${evento.date}</dd>
+                        <dt>Description:</dt><dd>${evento.description}</dd>
+                        <dt>Category:</dt><dd>${evento.category}</dd>
+                        <dt>Place:</dt><dd>${evento.place}</dd>
+                        <dt>Capacity:</dt><dd>${evento.capacity}</dd>
+                        <dt>Assistance:</dt><dd>${evento.assistance}</dd>
+                        <dt>Estimate:</dt><dd>${evento.estimate}</dd>
+                        <dt>Price $:</dt><dd>${evento.price}</dd>
+                    </dl>
+                </div>`;
+    contenedor.appendChild(div);
+}
