@@ -1,22 +1,11 @@
 import data from "./amazing.js"
 
-//function que filtra data de eventos pasados
-export function pastEvents(data) {
-    let arrayPastAux = [];
-    arrayPastAux = data.events.filter(event => (Date.parse(event.date) < Date.parse(data.currentDate)));
-    return arrayPastAux;
-}
-
-//function que filtra data de eventos futuros
-export function upcomingEvents(data) {
-    let arrayUpcomAux = [];
-    arrayUpcomAux = data.events.filter(event => (Date.parse(event.date) > Date.parse(data.currentDate)));
-    return arrayUpcomAux;
-};
-
-//function que dibuja las cards
+//function that draw cards in container
 export function drawCards(events, contenedor) {
-    contenedor.innerHTML = ""
+    contenedor.innerHTML = ''
+    if (events.lenght == 0) {
+        contenedor.innerHTML = `<h2>No results</h2>`
+    }
     let fragmento = document.createDocumentFragment();
     for (let event of events) {
         let div = document.createElement('div');
@@ -35,9 +24,21 @@ export function drawCards(events, contenedor) {
     contenedor.appendChild(fragmento);
 }
 
-// function que selecciona las categorías
+//function filtering past events returning an array of filtered events
+export function pastEvents(data) {
+    let arrayPastAux = [];
+    arrayPastAux = data.events.filter(event => (Date.parse(event.date) < Date.parse(data.currentDate)));
+    return arrayPastAux;
+}
 
-//función que crea las categorías en checkboxes
+//function filtering upcoming events returning an array of filtered events
+export function upcomingEvents(data) {
+    let arrayUpcomAux = [];
+    arrayUpcomAux = data.events.filter(event => (Date.parse(event.date) > Date.parse(data.currentDate)));
+    return arrayUpcomAux;
+};
+
+//function creating categories in checkboexes
 export function createChecks(array) {
     let arrayCateg = array.map(event => event.category)
     let setCateg = new Set(arrayCateg)
@@ -52,24 +53,7 @@ export function createChecks(array) {
     checkContainer.innerHTML = checkboxes
 }
 
-//función que filtra las categorías en checkboxes
-function filtrarPorPais(array){
-    let checkboxes = document.querySelectorAll("input[type='checkbox']")
-    console.log(checkboxes);
-    let arrayChecks = Array.from(checkboxes)
-    let arrayChecksChecked = arrayChecks.filter(check => check.checked)
-    console.log(arrayChecksChecked);
-    let arrayChecksCheckedValues = arrayChecksChecked.map(checkChecked => checkChecked.value)
-    console.log(arrayChecksCheckedValues);
-    let arrayFiltrado = array.filter(elemento => arrayChecksCheckedValues.includes(elemento.country))
-    console.log(arrayFiltrado);
-    if(arrayChecksChecked.length > 0){
-        return arrayFiltrado
-    }
-    return array
-}
-
-//function que dibuja las cards de details
+//function drawing detail cards 
 export function drawDetails(evento, contenedor) {
     let div = document.createElement('div');
     div.className = 'cardDetails';
@@ -83,8 +67,8 @@ export function drawDetails(evento, contenedor) {
                         <dt>Category:</dt><dd>${evento.category}</dd>
                         <dt>Place:</dt><dd>${evento.place}</dd>
                         <dt>Capacity:</dt><dd>${evento.capacity}</dd>
-                        <dt>Assistance:</dt><dd>${evento.assistance}</dd>
-                        <dt>Estimate:</dt><dd>${evento.estimate}</dd>
+                        <dt>${evento.assistance ? "Asistence" : "Estimate"}</dt>
+                        <dd>${evento.assistance ? evento.assistance : evento.estimate}</dd>
                         <dt>Price $:</dt><dd>${evento.price}</dd>
                     </dl>
                 </div>`;
