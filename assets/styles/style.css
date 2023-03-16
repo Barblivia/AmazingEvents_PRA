@@ -170,6 +170,20 @@ h2 {
   padding: 1%;
   margin-left: 2%;
 }
+#detailsGoBack {
+  background-color:rgb(241, 95, 144);
+  color: aliceblue;
+  font:icon;
+ }
+
+#detailsGoBack:hover {
+  color: black;
+  background-color: rgb(138, 72, 128);
+}
+
+#detailsGoBack:active {
+  background-color: rgb(137, 120, 138);
+}
 
 .img-fluid {
   object-fit: cover;
