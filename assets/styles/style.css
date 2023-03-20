@@ -118,7 +118,7 @@ h2 {
   font-weight: bolder;
 }
 
-.card-text{
+.card-text {
   height: 40%;
   object-fit: cover;
 }
@@ -134,14 +134,28 @@ h2 {
 }
 
 .cardDetails {
-  background-color: rgb(241, 95, 144);
-  border-radius: 1rem;
   display: flex;
-  width: 80%;
-  padding: 1rem;
+  background-color: rgb(241, 95, 144);
+  align-self: center;
   align-content: center;
-  }
-  
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 80%;
+}
+
+.formContact {
+  display: flex;
+  background-color: rgb(245, 140, 175);
+  align-self: center;
+  align-content: center;
+  padding: 1rem;
+  border-radius: 5px;
+  width: 50%;
+  margin: auto;
+  gap: 1rem;
+  flex-direction: column;
+}
+
 .cardDetails > img {
   width: 80%;
   object-fit: contain;
@@ -152,29 +166,32 @@ h2 {
   border-radius: 15px;
 }
 
-.cardDetails > dt, dl {
-  font-size:larger;
+.cardDetails > dt,
+dl {
+  font-size: larger;
   object-fit: cover;
-  width:max-content;
+  width: max-content;
   margin-right: 4rem;
   padding: 1%;
-  display:inline;
-  }
+  display: inline;
+}
 
 .cardDetails > div {
   width: 70%;
   padding: 0.5rem;
-  text-align:justify;
+  text-align: justify;
   display: flex;
   gap: 0.5rem;
   padding: 1%;
   margin-left: 2%;
+  align-self: center;
 }
+
 #detailsGoBack {
-  background-color:rgb(241, 95, 144);
+  background-color: rgb(241, 95, 144);
   color: aliceblue;
-  font:icon;
- }
+  font: icon;
+}
 
 #detailsGoBack:hover {
   color: black;
@@ -197,19 +214,6 @@ h2 {
 
 .navbar-toggler {
   margin-bottom: 1rem;
-}
-
-.formContact {
-  display: flex;
-  align-self: center;
-  padding: 1rem;
-  align-content: center;
-  width: 50%;
-  border-radius: 5px;
-  background-color: rgb(245, 140, 175);
-  margin: auto;
-  gap: 1rem;
-  flex-direction: column;
 }
 
 input[type="text"],

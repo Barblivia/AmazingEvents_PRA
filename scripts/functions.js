@@ -3,8 +3,8 @@ import data from "./amazing.js"
 //function that draw cards in container
 export function drawCards(events, contenedor) {
     contenedor.innerHTML = ''
-    if (events.lenght == 0) {
-        contenedor.innerHTML = `<h2>No results</h2>`
+    if (events.length == 0) {
+        contenedor.innerHTML = '<h2>No results found. Try again!!!</h2>'
     }
     let fragmento = document.createDocumentFragment();
     for (let event of events) {
@@ -58,7 +58,7 @@ export function drawDetails(evento, contenedor) {
     let div = document.createElement('div');
     div.className = 'cardDetails';
     div.innerHTML = `
-               <img class="class="img-fluid" src="${evento.image}" alt="${evento.name}">
+               <img class="class="img-fluid" src="${evento.image}" title="${evento.name}" alt="${evento.name}">
                 <div class="card-body">
                     <dl class="card-list">
                         <dt><h3>${evento.name}</h3></dt><dd></dd>    
@@ -73,4 +73,24 @@ export function drawDetails(evento, contenedor) {
                     </dl>
                 </div>`;
     contenedor.appendChild(div);
+}
+
+//Filtering functions
+//function searching by event name -text- returning an array of filtered events
+export function textFilter(array, name) {
+    let arrFiltered = array.filter(elemento => elemento.name.toLowerCase().includes(name.toLowerCase()))
+    return arrFiltered
+}
+
+//function filtering categories in checkboxes, returning an array of filtered events
+export function categFilter(eventosCateg) {
+    let checkboxes = document.querySelectorAll("input[type='checkbox']")
+    let arrChecks = Array.from(checkboxes)
+    let arrChecksCateg = arrChecks.filter(check => check.checked)
+    let arrChecksCategValues = arrChecksCateg.map(checkChecked => checkChecked.value)
+    let arrFiltrado = eventosCateg.filter(elemento => arrChecksCategValues.includes(elemento.category))
+    if (arrChecksCateg.length > 0) {
+        return arrFiltrado
+    }
+    return eventosCateg
 }
