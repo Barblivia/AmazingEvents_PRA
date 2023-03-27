@@ -1,5 +1,7 @@
-import data from "./amazing.js"
-import {upcomingEvents, drawCards, createChecks,textFilter, categFilter} from "./functions.js";
+//import data from "./amazing.js"
+import {upcomingEvents, drawCards, createChecks,textFilter, categFilter, getExternalData} from "./functions.js";
+
+const data = await getExternalData ("../data/amazing.json");
 
 let contenedor = document.getElementById("cardsUpcoming");
 

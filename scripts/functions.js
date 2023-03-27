@@ -1,4 +1,28 @@
-import data from "./amazing.js"
+//import data from "./amazing.js"
+
+//Function that gets data, "where" is the variable to pass the URL or route
+export async function getExternalData(where) {
+    let arrayEvents = await fetch(where)
+        .then((response) => response.json())
+        .then(events => {
+            return events;
+        })
+    return arrayEvents;
+}
+
+//function filtering past events returning an array of filtered events
+export function pastEvents(data) {
+    let arrayPastAux = [];
+    arrayPastAux = data.events.filter(event => (Date.parse(event.date) < Date.parse(data.currentDate)));
+    return arrayPastAux;
+}
+
+//function filtering upcoming events returning an array of filtered events
+export function upcomingEvents(data) {
+    let arrayUpcomAux = [];
+    arrayUpcomAux = data.events.filter(event => (Date.parse(event.date) > Date.parse(data.currentDate)));
+    return arrayUpcomAux;
+};
 
 //function that draw cards in container
 export function drawCards(events, contenedor) {
@@ -17,26 +41,12 @@ export function drawCards(events, contenedor) {
                     <h5 class="card-title">${event.name}</h5>
                     <p class="card-text">${event.description}</p>
                     <p class="card-price">Price: $${event.price}</p>
-                    <a href="../pages/details.html?id=${event.id}" class="btn btn-primary">Details</a>
+                    <a href="../pages/details.html?id=${event._id}" class="btn btn-primary">Details</a>
                 </div>`;
         fragmento.appendChild(div);
     }
     contenedor.appendChild(fragmento);
 }
-
-//function filtering past events returning an array of filtered events
-export function pastEvents(data) {
-    let arrayPastAux = [];
-    arrayPastAux = data.events.filter(event => (Date.parse(event.date) < Date.parse(data.currentDate)));
-    return arrayPastAux;
-}
-
-//function filtering upcoming events returning an array of filtered events
-export function upcomingEvents(data) {
-    let arrayUpcomAux = [];
-    arrayUpcomAux = data.events.filter(event => (Date.parse(event.date) > Date.parse(data.currentDate)));
-    return arrayUpcomAux;
-};
 
 //function creating categories in checkboexes
 export function createChecks(array) {
@@ -94,3 +104,79 @@ export function categFilter(eventosCateg) {
     }
     return eventosCateg
 }
+//Functions for Tables
+
+//Function that adds attendance percentage to each event and returns a new array of events
+export function eventsPercentage(events) {
+    let arrayPercentage = events.map(event => {
+        event.percentage = event.assistance ? parseInt(event.assistance / event.capacity * 100) : parseInt(event.estimate / event.capacity * 100)
+        return event
+    })
+    return arrayPercentage
+}
+
+
+//Function that returns one of the events with highest percentage of attendance
+export function eventMaxAttendance(events) {
+    let orderedMaxPercent = events.sort((a, b) => Number.parseInt(b.percentage) - Number.parseInt(a.percentage))
+    return orderedMaxPercent[0].name
+}
+
+
+//Function that returns one of the events with min percentage of attendance
+export function eventMinAttendance(events) {
+    let orderedMinPercent = events.sort((a, b) => Number.parseInt(a.percentage) - Number.parseInt(b.percentage))
+    return orderedMinPercent[0].name
+}
+
+//Function that returns one of the events with max capacity
+export function eventWithMaxCapacity(events) {
+    let eventMaxCap = events.find(event => event.capacity === Math.max(...events.map(event => event.capacity)))
+    return eventMaxCap.name
+}
+
+//Functions for drawing tables: Table1
+export function drawDataInTable1(events, contenedor) {
+    let trow = document.createElement('tr');
+    trow.innerHTML = `
+        <td>${eventMaxAttendance(events)}</td>
+        <td>${eventMinAttendance(events)}</td>
+        <td>${eventWithMaxCapacity(events)}</td>`;
+    contenedor.appendChild(trow);
+}
+
+//Functions for drawing tables: Table2_3
+export function drawDataInTable2_3(categories,revenues, percentage,contenedor) {
+                let trow = document.createElement("tr");
+        trow.innerHTML = `
+        <td>${categories}</td>
+        <td>$${revenues}</td>
+        <td>${percentage}%</td>`;
+        contenedor.appendChild(trow);
+    ;
+}  
+
+//Functions that returns category info 
+export function eventsStats(events,contenedor) {
+    let categoriesS = []
+    let revenuesS = []
+    let percentage = []
+    events.forEach(event => {
+        if (!categoriesS.includes(event.category)) {
+            categoriesS.push(event.category)
+            revenuesS[event.category] = 0
+            percentage[event.category] = 0
+        }
+        percentage[event.category] += ((event.assistance ? event.assistance : event.estimate)/ event.capacity) * 100
+        revenuesS[event.category] += ((event.assistance ? event.assistance : event.estimate) * event.price)
+    })
+    categoriesS.forEach(categorie => {
+        revenuesS[categorie] = revenuesS[categorie];
+        percentage[categorie] = (percentage[categorie] / events.filter(event => event.category === categorie).length).toFixed(1);
+
+        drawDataInTable2_3(categorie, revenuesS[categorie], percentage[categorie], contenedor)
+    });
+    console.log()
+    return { categoriesS, revenuesS, percentage };
+}
+

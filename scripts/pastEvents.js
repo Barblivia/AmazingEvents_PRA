@@ -1,6 +1,7 @@
-import data from "./amazing.js"
-import  {pastEvents, drawCards, createChecks, textFilter, categFilter} from "./functions.js"
+//import data from "./amazing.js"
+import  {pastEvents, drawCards, createChecks, textFilter, categFilter, getExternalData} from "./functions.js"
 
+const data = await getExternalData ("../data/amazing.json");
 let contenedor = document.getElementById("cardsPast");
 
 //Draw all cards in given array in container
